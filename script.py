@@ -11,8 +11,8 @@ from time import sleep
 from paho.mqtt import client as mqtt
 
 # This is the default serial port
-PORT = '/dev/ttyUSB0'
-#PORT = '/dev/ttyUSB1'
+#PORT = '/dev/ttyUSB0'
+PORT = '/dev/cu.usbserial-4'
 #PORT = '/dev/ttyUSB2'
 #PORT = '/dev/ttyUSB3'
 
@@ -54,12 +54,15 @@ try:
         # Convert the binary string to a normal string
         # Remove the trailing newline character
         value = ser.readline().decode().strip().strip()
-        print('decoded', value)
-        try:
+	print('decoded', value)
+        
+	try:
             value = json.loads(value)
+            print json.dumps(value, indent=4)
+	    		
         except json.JSONDecodeError:
             continue
-        print('json', value)
+            print('json')
 
         message = {
             'key': 'meterscript',
