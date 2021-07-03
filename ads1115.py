@@ -14,13 +14,13 @@ import Adafruit_ADS1x15
 
 adc = Adafruit_ADS1x15.ADS1115()
 
-# Gain
-# 2/3 reads 0 - 6.144v 1 bit = 3.000 mV
-# 1   reads 0 - 4.096v 1 bit = 2.000 mV
-# 2   reads 0 - 2.048v 1 bit = 1.000 mV
-# 4   reads 0 - 1.024v 1 bit = 0.500 mV
-# 8   reads 0 - 0.512v 1 bit = 0.250 mV
-# 16  reads 0 - 0.256v 1 bit = 0.125 mV
+# Gain  ->  0 - gain_maxv
+# 2/3   ->  0 - 6.144v    1 bit = 3.000 mV
+# 1     ->  0 - 4.096v    1 bit = 2.000 mV
+# 2     ->  0 - 2.048v    1 bit = 1.000 mV
+# 4     ->  0 - 1.024v    1 bit = 0.500 mV
+# 8     ->  0 - 0.512v    1 bit = 0.250 mV
+# 16    ->  0 - 0.256v    1 bit = 0.125 mV
 
 # set gain of ads1115
 GAIN = 2/3
@@ -54,7 +54,7 @@ pressure_factor = pressure_rating / ads_vdd
 ###############################################################
 # Conversions
 
-# convers volts back to mA
+# Converts volts to mA
 milliamp_factor = 4
 
 # Converts volts to pH
