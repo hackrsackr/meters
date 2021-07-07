@@ -36,7 +36,7 @@ void get_adc() {
 
 void test_pH() {
   //sfgf
-  float divisors [meters] = {1639.0, 1546.0, 1639.0, 1546.0};
+  float divisors [meters] = {1639.0, 1639.0, 1639.0, 1546.0};
 
   Serial.print("{");
   //convert raw adc data to processed value and assign them to values[]
