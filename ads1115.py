@@ -22,7 +22,7 @@ adc = Adafruit_ADS1x15.ADS1115()
 # 8     ->  0 - 0.512v    1 bit = 0.250 mV
 # 16    ->  0 - 0.256v    1 bit = 0.125 mV
 
-# set gain of ads1115
+# Set gain of ads1115
 GAIN = 2/3
 
 # Max readable volts based on gain setting
@@ -34,17 +34,17 @@ ads_fullscale = 32768
 # Convert read_adc to dc volts
 voltage_factor = gain_maxv / ads_fullscale
 
-# ads1115 VDD
+# Ads1115 VDD
 ads_vdd = 5
 ###############################################################
 
 ###############################################################
-# sensor stuff
+# Sensor stuff
 
 # Max pressure rating in PSI
 pressure_rating = 60
 
-# bits at .5v or sensor zero state
+# Bits at .5v or sensor zero state
 sensor_offset = 2656
 
 # Converts adc to psi
@@ -55,13 +55,13 @@ pressure_factor = pressure_rating / ads_vdd
 # Conversions
 
 # Converts volts to mA
-milliamp_factor = 4
+milliamp_factor = voltage_factor * 4
 
 # Converts volts to pH
-pH_factor = 2
+pH_factor = voltage_factor * 2
 
 # Converts volts to microsiemens
-conductivity_factor = 10
+conductivity_factor = voltage_factor * 10
 ###############################################################
 # Do things
 def get_ADC(channel):
@@ -71,16 +71,16 @@ def get_VOLTS(channel):
     return adc.read_adc(channel, gain=GAIN) * voltage_factor
 
 def get_mA(channel):
-    return adc.read_adc(channel, gain=GAIN) * voltage_factor * milliamp_factor
+    return adc.read_adc(channel, gain=GAIN) * milliamp_factor
 
 def get_PSI(channel):
-    return (adc.read_adc(channel, gain=GAIN) - sensor_offset) * voltage_factor * pressure_factor
+    return (adc.read_adc(channel, gain=GAIN) - sensor_offset) * pressure_factor
 
 def get_pH(channel):
-    return adc.read_adc(channel, gain=GAIN) * voltage_factor * pH_factor
+    return adc.read_adc(channel, gain=GAIN) * pH_factor
 
 def get_COND(channel):
-    return adc.read_adc(channel, gain=GAIN) * voltage_factor * conductivity_factor
+    return adc.read_adc(channel, gain=GAIN) * conductivity_factor
 ###############################################################
 
 while True:
