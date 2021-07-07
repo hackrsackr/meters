@@ -33,13 +33,13 @@ ads_fullscale = 32768
 
 # Convert read_adc to dc volts
 voltage_factor = gain_maxv / ads_fullscale
-
-# Ads1115 VDD
-ads_vdd = 5
 ###############################################################
 
 ###############################################################
 # Sensor stuff
+
+# Sensor VDD
+sensor_voltage = 5
 
 # Max pressure rating in PSI
 pressure_rating = 60
@@ -48,7 +48,7 @@ pressure_rating = 60
 sensor_offset = 2656
 
 # Converts adc to psi
-pressure_factor = pressure_rating / ads_vdd
+pressure_factor = pressure_rating / sensor_voltage
 ###############################################################
 
 ###############################################################
