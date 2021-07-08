@@ -8,6 +8,7 @@
 
 import time
 import Adafruit_ADS1x15
+import json
 
 #############################################################
 # ADS1115 stuff
@@ -84,15 +85,12 @@ def get_COND(channel):
 ###############################################################
 
 while True:
-    for i in range(4):
-        print("---------------------------------")
-        print("ID:           ", i + 1)
-        print("ADC:          ", get_ADC(i))
-        print("Voltage:      ", get_VOLTS(i))
-        print("Pressure:     ", get_PSI(i))
-        print("pH:           ", get_pH(i))
-        print("Conductivity: ", get_COND(i))
-        print("---------------------------------")
+
+    dict = {}
+    keys = range(4)
+    for i in keys:
+        dict[i] = get_pH(i)
+    print(json.dumps(dict))
 
     # sleep in between loops
     time.sleep(5)
