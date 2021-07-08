@@ -77,14 +77,14 @@ try:
     client.connect_async(host=HOST, port=443)
     client.loop_start()
 
-    dict = {}
+    data = {}
     keys = range(4)
 
     while True:
         for i in keys:
-            dict[i] = round(get_pH(i), 2)
+            data[i] = round(get_pH(i), 2)
 
-        value = json.dumps(dict)
+        value = json.dumps(data)
 
         try:
             value = json.loads(value)
