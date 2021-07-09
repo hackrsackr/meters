@@ -62,16 +62,21 @@ milliamp_factor = voltage_factor * 4
 # Output range is 0-10pH mapped to 0-5vdc
 pH_factor = voltage_factor * 2
 
-# Do things
-def get_VOLTS(channel):
+# ADC -> volts DC
+def get_volts(channel):
     return adc.read_adc(channel, gain=GAIN) * voltage_factor
 
-def get_mA(channel):
+# ADC -> volts DC
+def get_ma(channel):
     return adc.read_adc(channel, gain=GAIN) * milliamp_factor
+###############################################################
 
-def get_pH(channel):
+###############################################################
+# Specific conversion
+def get_ph(channel):
     return adc.read_adc(channel, gain=GAIN) * pH_factor
 ###############################################################
+
 try:
 
     client.connect_async(host=HOST, port=443)
@@ -82,7 +87,7 @@ try:
 
     while True:
         for i in keys:
-            data[i] = round(get_pH(i), 2)
+            data[i] = round(get_ph(i), 2)
 
         value = json.dumps(data)
 
